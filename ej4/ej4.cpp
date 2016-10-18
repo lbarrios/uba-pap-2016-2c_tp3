@@ -8,7 +8,7 @@
 
 using namespace std;
 
-struct elementContainer{
+struct elementContainer {
     int biggestElement;
     int secondBiggestElement;
 };
@@ -18,7 +18,7 @@ std::ostream &operator<<(std::ostream &os, elementContainer const &a) {
     return os;
 }
 
-elementContainer ecMax(elementContainer a, elementContainer b){
+elementContainer ecMax(elementContainer a, elementContainer b) {
     elementContainer newEc;
     newEc.biggestElement = max(a.biggestElement, b.biggestElement);
     newEc.secondBiggestElement = max(
@@ -34,13 +34,12 @@ elementContainer ecMax(elementContainer a, elementContainer b){
     return newEc;
 }
 
-int main(int argc , char *argv[])
-{
+int main(int argc , char *argv[]) {
     ///    ETAPA 1,
     /// CARGO LOS DATOS
     //cout << "start"<< endl;
     string str;
-    int cantidadDias; int cantidadIntervalos;int sizeArbol;
+    int cantidadDias, cantidadIntervalos, sizeArbol;
     elementContainer *Arbol;
     //Matriz target; Matriz *inputs; Matriz *Arbol;
 
@@ -49,12 +48,12 @@ int main(int argc , char *argv[])
     //cin >>target;
 
     elementContainer* inputs = new elementContainer[cantidadDias];
-    for(int x=0; x < cantidadDias; x++){
-            elementContainer ec;
-            cin >> ec.biggestElement;
-            ec.secondBiggestElement = 0;
-          //  cout << ec.biggestElement<< endl;
-            inputs[x] = ec;
+    for(int x=0; x < cantidadDias; x++) {
+        elementContainer ec;
+        cin >> ec.biggestElement;
+        ec.secondBiggestElement = 0;
+        //  cout << ec.biggestElement<< endl;
+        inputs[x] = ec;
     }
 
     /// ETAPA 2,
@@ -67,7 +66,7 @@ int main(int argc , char *argv[])
     ecNeutro.secondBiggestElement = 0;
     poblarArbol(ecMax, ecNeutro, Arbol, sizeArbol, inputs, cantidadDias);
 
-   // printArbol(Arbol, sizeArbol, false);
+    // printArbol(Arbol, sizeArbol, false);
 
     //actualizarArbol(iMax, Arbol,sizeArbol,1,15);
 
@@ -76,14 +75,13 @@ int main(int argc , char *argv[])
     /// PARA TODOS LOS INTERVALOS QUE ESTAN DENTRO DE LOS DATOS QUE SUBIMOS,
     /// CALCULAMOS LA MULTIPLICACION Y NOS FIJAMOS SI ES TARGET
 
-    int comienzoIntervalo,finintervalo;
+    int comienzoIntervalo, finintervalo;
     elementContainer ecAnswer;
-    for(int x=0; x < cantidadIntervalos; x++){
+    for(int x = 0; x < cantidadIntervalos; x++) {
         cin >> comienzoIntervalo >> finintervalo;
-        ecAnswer = resolverIntervalo(ecMax, ecNeutro,Arbol,sizeArbol,comienzoIntervalo,finintervalo);
+        ecAnswer = resolverIntervalo(ecMax, ecNeutro, Arbol, sizeArbol, comienzoIntervalo, finintervalo);
         cout << ecAnswer.biggestElement + ecAnswer.secondBiggestElement << endl;
-    };
-
+    }
 
     delete [] inputs;
     delete [] Arbol;
