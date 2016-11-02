@@ -18,6 +18,8 @@ def generar_tabla_de_bordes(text):
 	return bordes
 
 def es_substring(nombre, apodo):
+	if(len(apodo) > len(nombre)):
+		return False
 	tabla_de_bordes = generar_tabla_de_bordes(apodo+nombre) # O(|nombre|+|apodo|) = O(n)
 	#print(tabla_de_bordes)
 	largo_buscado = len(apodo) 		# O(|apodo|) = O(n)
